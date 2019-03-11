@@ -10,7 +10,6 @@ lines = f.readlines()
 dic = {}
 f.close()
 
-
 for line in lines:
     line.rstrip('\n')
     temp = line.split(": ")
