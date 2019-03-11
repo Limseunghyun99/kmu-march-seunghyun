@@ -1,6 +1,11 @@
+import sys
 
+try:
+    filename = sys.argv[1]
+except:
+    print("Please enter filename")
 
-f = open('98429.txt', 'r')
+f = open(filename, 'r')
 lines = f.readlines()
 dic = {}
 f.close()
