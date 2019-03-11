@@ -13,7 +13,6 @@ f.close()
 
 for line in lines:
     line.rstrip('\n')
-    temp = []
     temp = line.split(": ")
     if temp[0] == "\n":
         break
