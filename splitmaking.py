@@ -1,24 +1,19 @@
-import sys
+#import sys
+#import csv
+import os
 
-try:
-    filename = sys.argv[1]
-except:
-    print("Please enter filename")
+def toDic(filename):
 
-f = open(filename, 'r')
-lines = f.readlines()
-dic = {}
-f.close()
+    f = open(filename,)
+    lines = f.readlines()
+    dic = {}
+    f.close()
 
+    for line in lines:
+        line.rstrip('\n')
+        temp = line.split(": ")
+        if temp[0] == "\n":
+            break
+        dic[temp[0]] = temp[0:]
 
-for line in lines:
-    line.rstrip('\n')
-    temp = line.split(": ")
-    if temp[0] == "\n":
-        break
-    dic[temp[0]] = temp[1]
-
-
-print(dic)
-print(lines)
-
+    return dic
