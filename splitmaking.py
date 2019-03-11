@@ -1,5 +1,4 @@
 
-
 f = open('98429.txt', 'r')
 lines = f.readlines()
 dic = {}
