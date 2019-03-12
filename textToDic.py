@@ -1,19 +1,33 @@
-from splitmaking import toDic
-import csv
-import os
+import sys, csv, os, string
+from datetime import datetime
+import codecs
 
-path = os.path.join('/home', 'bear', 'emails')
-#os.chdir(path)
-files = os.listdir(path)
+def toDic(filename):
+    path = os.path.join('./emails', filename)
+    f = open(path, 'r')
 
-print(files)
+    lines = f.readlines()
+    dic = {}
+    f.close()
 
-data_file = open('data.csv', 'w')
-writer = csv.writer(data_file, delimiter=',')
-for file in files:
-    writer.writerow(toDic(file))
-data_file.close()
+    for line in lines:
+        line.rstrip('\n')
+        temp = line.split(": ")
+        if temp[0] == "\n":
+            break
+        elif temp[0] == "Date":
+            core = temp[1].split(" ")
+            chicken = ' '.join(core[1:-2])
+            dic[temp[0]] = datetime.strptime(chicken, '%d %b %Y %H:%M:%S')
+            print(dic)
+        else:
+            dic[temp[0]] = temp[1:]
 
+    print("1st checkpoint")
+    with open('output.csv', 'w') as data:
+        for key in dic.keys():
+            data.write("%s,%s\n" % (key, dic[key]))
+            print(key, dic[key])
+        data.close()
 
-
-
+    return 0
